@@ -92,6 +92,7 @@ class SedeController extends \Configs\Controller
       $director = \Model::factory('\Models\VWDirectorSede', 'coa')
       	->select('director')
       	->select('titulo')
+        ->select('sede')
         ->where('sede_id', $sede_id)
         ->find_one()
   			->as_array();
