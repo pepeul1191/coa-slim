@@ -83,4 +83,44 @@ class SedeController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function director_odontologos($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    $sede_id = $args['sede_id'];
+    try {
+      $director = \Model::factory('\Models\VWDirectorSede', 'coa')
+      	->select('director')
+      	->select('titulo')
+        ->where('sede_id', $sede_id)
+        ->find_one()
+  			->as_array();
+      $odontologos = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+      	->select('nombres')
+      	->select('paterno')
+        ->select('materno')
+        ->select('rne')
+        ->select('cop')
+        ->select('especialidad')
+        ->where('sede_id', $sede_id)
+      	->find_array();
+      $rs = [
+        'director' => $director,
+        'odontologos' => $odontologos,
+      ];
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+  					'No se ha podido obtener el directo(a)r de la sede y sus odontólogo(a)s',
+  					$e->getMessage()
+  				]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }

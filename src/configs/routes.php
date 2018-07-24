@@ -39,3 +39,4 @@ $app->get('/distrito/nombre/{distrito_id}', DistritoController::class . ':nombre
 $app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
 $app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
 $app->get('/sede/departamento', SedeController::class . ':departamento')->add($mw_ambiente_csrf);
+$app->get('/sede/director_odontologos/{sede_id}', SedeController::class . ':director_odontologos')->add($mw_ambiente_csrf);
