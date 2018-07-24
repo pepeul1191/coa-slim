@@ -26,5 +26,16 @@ require __DIR__ . '/src/configs/middleware.php';
 // Register routes
 require __DIR__ . '/src/configs/routes.php';
 
+/*CORS*/
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+  return $response;
+});
+$app->add(function ($req, $res, $next) {
+  $response = $next($req, $res);
+  return $response
+    ->withHeader('Access-Control-Allow-Origin', '*')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization, csrf_val')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
 // Run app
 $app->run();

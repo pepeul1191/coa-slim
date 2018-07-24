@@ -46,7 +46,7 @@ $container['notFoundHandler'] = function ($c) {
       );
       return $c['response']
         ->withStatus(404)
-        ->withHeader('Allow', implode(', ', $methods))
+        ->withHeader('Allow', $method)
         ->withHeader('Content-type', 'text/html')
         ->write($rpta);
     }

@@ -8,6 +8,7 @@ use Controller\ErrorController;
 use Controller\HomeController;
 use Controller\LoginController;
 use Controller\ProvinciaController;
+use Controller\SedeController;
 
 // Routes
 $app->get('/demo/[{name}]', function (Request $request, Response $response, array $args) {
@@ -34,3 +35,7 @@ $app->get('/distrito/listar/{provincia_id}', DistritoController::class . ':lista
 $app->post('/distrito/guardar', DistritoController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->get('/distrito/buscar', DistritoController::class . ':buscar')->add($mw_ambiente_csrf);
 $app->get('/distrito/nombre/{distrito_id}', DistritoController::class . ':nombre')->add($mw_ambiente_csrf);
+//servicios REST - sitio web
+$app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
+$app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
+$app->get('/sede/departamento', SedeController::class . ':departamento')->add($mw_ambiente_csrf);
