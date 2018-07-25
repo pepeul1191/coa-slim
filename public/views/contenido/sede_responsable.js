@@ -1,7 +1,7 @@
 var dataSedeResponsableView = {
   el: "body",
   containerModal: "modal-container",
-  urlTemplate: STATICS_URL + "templates/sede_responsable.html",
+  urlTemplate: STATICS_URL + "templates/contenido/sede_responsable.html",
   handlebarsTemplateId: "sede-responsable-template",
   targetMensaje: "mensajeRptaSedeResponsables",
   context: {

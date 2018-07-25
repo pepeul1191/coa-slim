@@ -22,7 +22,7 @@ var DoctorView = Backbone.View.extend({
 		var data = { };
 		var template_compiled = null;
 		$.ajax({
-		   url: STATICS_URL + 'templates/doctor.html',
+		   url: STATICS_URL + 'templates/contenido/doctor.html',
 		   type: "GET",
 		   async: false,
 		   success: function(source) {

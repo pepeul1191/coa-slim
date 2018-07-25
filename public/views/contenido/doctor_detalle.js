@@ -1,7 +1,7 @@
 var dataDoctorDetalleView = {
   el: "body",
   containerModal: "modal-container",
-  urlTemplate: STATICS_URL + "templates/doctor_detalle.html",
+  urlTemplate: STATICS_URL + "templates/contenido/doctor_detalle.html",
   handlebarsTemplateId: "doctor-detalle-template",
   targetMensaje: "mensajeRptaDoctor",
   context: {

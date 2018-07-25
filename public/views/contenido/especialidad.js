@@ -21,7 +21,7 @@ var EspecialidadView = Backbone.View.extend({
 		var data = { };
 		var template_compiled = null;
 		$.ajax({
-		   url: STATICS_URL + 'templates/especialidad.html',
+		   url: STATICS_URL + 'templates/contenido/especialidad.html',
 		   type: "GET",
 		   async: false,
 		   success: function(source) {

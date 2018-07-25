@@ -24,7 +24,7 @@ var SedeView = Backbone.View.extend({
 		var data = { };
 		var template_compiled = null;
 		$.ajax({
-		   url: STATICS_URL + 'templates/sede.html',
+		   url: STATICS_URL + 'templates/contenido/sede.html',
 		   type: "GET",
 		   async: false,
 		   success: function(source) {
