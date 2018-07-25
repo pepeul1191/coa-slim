@@ -1,0 +1,38 @@
+<script id="sede-doctor-template" type="text/x-handlebars-template">
+  <div class="modal-dialog modal-xlg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">{{titulo_modal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="formTableSedeDoctor">
+        <label class="texto-der" id="mensajeRptaSedeDoctor"></label>
+        <table class="table table-striped" style="" id="tablaSedeDoctor">
+          <thead>
+            <tr>
+              <th style="width: 10px; display:none;">id</th>
+              <th style="width: 150px;">Nombres</th>
+              <th style="width: 150px;">Paterno</th>
+              <th style="width: 150px;">Materno</th>
+              <th style="width: 80px;">N° COP</th>
+              <th style="width: 80px;">N° RNE</th>
+              <th style="width: 150px;">Especialidad</th>
+              <th style="width: 50px;">Sexo</th>
+              <th style="width: 50px; padding-left: 7px !important;">Botones</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="1000" style="text-align:right">
+                <button class="btn btn-default agregar-fila"> <i class="fa fa-plus" style="margin-right:5px"></i>Agregar Registro</button>
+                <button class="btn btn-default guardar-tabla"> <i class="fa fa-check" style="margin-right:5px"></i>Guardar Cambios</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</script>

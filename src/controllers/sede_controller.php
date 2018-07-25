@@ -97,6 +97,7 @@ class SedeController extends \Configs\Controller
           ->where('tipo_sede_id', 1)
           ->select('latitud')
           ->select('longitud')
+          ->select('direccion')
         	->find_array();
       }else{
         $rs = \Model::factory('\Models\Sede', 'coa')
@@ -104,6 +105,7 @@ class SedeController extends \Configs\Controller
         	->select('nombre')
           ->select('latitud')
           ->select('longitud')
+          ->select('direccion')
           ->where('id', $sede_id)
           ->find_one()
     			->as_array();

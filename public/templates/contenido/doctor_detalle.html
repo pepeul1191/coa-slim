@@ -1,0 +1,100 @@
+<script id="doctor-detalle-template" type="text/x-handlebars-template">
+  <div class="modal-dialog modal-xlg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">{{titulo_modal}}</h4>
+        <button type="button" class="close" data-dimdiss="modal" aria-label="Close" id="closeModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label class="texto-der" id="mensajeRptaDoctor"></label>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="txtNombres">Nombres</label>
+                  <input type="text" class="form-control" id="txtNombres" placeholder="" value="{{doctor.nombres}}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="txtPaterno">Apellido Paterno</label>
+                  <input type="text" class="form-control" id="txtPaterno" placeholder="" value="{{doctor.paterno}}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="txtMaterno">Apellido Materno</label>
+                  <input type="text" class="form-control" id="txtMaterno" placeholder="" value="{{doctor.materno}}">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label for="cbmSexo">Sexo</label>
+                  <select class="form-control" id="cbmSexo" {{#if disabled}}disabled{{/if}}>
+                    <option value="E"></option>
+                    {{#fillSelect sexos doctor.sexo_id}}{{/fillSelect}}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="txtCOP">N° COP</label>
+                  <input type="text" class="form-control" id="txtCOP" placeholder="" value="{{doctor.cop}}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="txtRNE">N° RNE</label>
+                  <input type="text" class="form-control" id="txtRNE" placeholder="" value="{{doctor.rne}}">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="cbmTipoSede">Tipo de Sede</label>
+                  <select class="form-control" id="cbmTipoSede" {{#if disabled}}disabled{{/if}}>
+                    <option value="E"></option>
+                    {{#fillSelect tipo_sedes doctor.tipo_sede_id}}{{/fillSelect}}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cbmSede">Sede</label>
+                  <select class="form-control" id="cbmSede" {{#if disabled}}disabled{{/if}}>
+                    <option value="E"></option>
+                    {{#fillSelect sedes doctor.sede_id}}{{/fillSelect}}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cbmEspecialidad">Especialidades</label>
+                  <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
+                    <option value="E"></option>
+                    {{#fillSelect especialidades doctor.especialidad_id}}{{/fillSelect}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group pull-right" style="padding-top:10px">
+              <button class="btn btn-default guardar-tabla" id="btnGuardarDetalleDoctor"><i class="fa fa-check" style="margin-right:5px"></i>Guardar Cambios</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

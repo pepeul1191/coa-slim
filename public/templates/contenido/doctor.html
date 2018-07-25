@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-12" id="formTableDoctor">
+    <h4>Gestión de Doctores</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Buscar por Nombre</h6>
+        <div class="row form-group-nested">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="txtNombres">Nombres</label>
+              <input type="text" class="form-control" id="txtNombres" placeholder="" value="{{doctor.nombres}}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="txtPaterno">Apellido Paterno</label>
+              <input type="text" class="form-control" id="txtPaterno" placeholder="" value="{{doctor.paterno}}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="txtMaterno">Apellido Materno</label>
+              <input type="text" class="form-control" id="txtMaterno" placeholder="" value="{{doctor.materno}}">
+            </div>
+          </div>
+        </div>
+        <div class="row form-group-nested">
+          <div class="col-md-12" style="padding-right: 0px;">
+            <div class="form-group pull-right" style="padding-top:10px">
+              <button class="btn btn-default guardar-tabla" id="btnGuardarDetalleDoctor"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h6>Buscar por Sede</h6>
+        <div class="row form-group-nested">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="cbmEspecialidad">Especialidades</label>
+              <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
+                <option value="E"></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6" style="padding-right: 15px;">
+            <div class="form-group">
+              <label for="cbmEspecialidad">Especialidades</label>
+              <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
+                <option value="E"></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group-nested">
+          <div class="col-md-12">
+            <div class="form-group pull-right" style="padding-top:10px">
+              <button class="btn btn-default guardar-tabla" id="btnGuardarDetalleDoctor"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h6>Lista de Doctores</h6>
+        <label class="texto-der" id="mensajeRptaDoctor"></label>
+        <table class="table table-striped" style="" id="tablaDoctor">
+          <thead>
+            <tr>
+              <th style="width: 10px; display:none;">id</th>
+              <th style="width: 50px;">Sexo</th>
+              <th style="width: 100px;">Nombres</th>
+              <th style="width: 100px;">Paterno</th>
+              <th style="width: 100px;">Materno</th>
+              <th style="width: 100px;">Especialidad</th>
+              <th style="width: 70px;">N° COP</th>
+              <th style="width: 70px;">N° RNE</th>
+              <th style="width: 100px;">Tipo Sede</th>
+              <th style="width: 100px;">Sede</th>
+              <th style="width: 50px; padding-left: 7px !important;">Botones</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="1000" style="text-align:right">
+                <span id="doctoresBotonesPaginacion" class="td-botones-paginacion"></span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
