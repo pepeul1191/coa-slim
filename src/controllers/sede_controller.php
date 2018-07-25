@@ -75,7 +75,47 @@ class SedeController extends \Configs\Controller
         [
           'tipo_mensaje' => 'error',
           'mensaje' => [
-  					'No se ha podido listar las sedes de provincias',
+  					'No se ha podido listar los departamentos',
+  					$e->getMessage()
+  				]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
+
+  public function sedes_departamento($request, $response, $args){
+    $rpta = '';
+    $status = 200;
+    $sede_id = $args['sede_id'];
+    try {
+      $rs = null;
+      if($sede_id == 0){
+        $rs = \Model::factory('\Models\Sede', 'coa')
+        	->select('id')
+        	->select('nombre')
+          ->where('tipo_sede_id', 1)
+          ->select('latitud')
+          ->select('longitud')
+        	->find_array();
+      }else{
+        $rs = \Model::factory('\Models\Sede', 'coa')
+        	->select('id')
+        	->select('nombre')
+          ->select('latitud')
+          ->select('longitud')
+          ->where('id', $sede_id)
+          ->find_one()
+    			->as_array();
+      }
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+  					'No se ha podido listar las sedes del departamento',
   					$e->getMessage()
   				]
         ]
