@@ -27,23 +27,35 @@
         <div class="row form-group-nested">
           <div class="col-md-12" style="padding-right: 0px;">
             <div class="form-group pull-right" style="padding-top:10px">
-              <button class="btn btn-default guardar-tabla" id="btnGuardarDetalleDoctor"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
+              <button class="btn btn-default guardar-tabla" id="btnBuscarNombres"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <h6>Buscar por Sede</h6>
         <div class="row form-group-nested">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
-              <label for="cbmEspecialidad">Especialidades</label>
-              <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
+              <label for="cbmEspecialidad">Sedes</label>
+              <select class="form-control" id="cbmSede" {{#if disabled}}disabled{{/if}}>
                 <option value="E"></option>
               </select>
             </div>
           </div>
-          <div class="col-md-6" style="padding-right: 15px;">
+        </div>
+        <div class="row form-group-nested">
+          <div class="col-md-12">
+            <div class="form-group pull-right" style="padding-top:10px">
+              <button class="btn btn-default guardar-tabla" id="btnBuscarSede"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h6>Buscar por Especialidad</h6>
+        <div class="row form-group-nested">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="cbmEspecialidad">Especialidades</label>
               <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
@@ -55,7 +67,7 @@
         <div class="row form-group-nested">
           <div class="col-md-12">
             <div class="form-group pull-right" style="padding-top:10px">
-              <button class="btn btn-default guardar-tabla" id="btnGuardarDetalleDoctor"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
+              <button class="btn btn-default guardar-tabla" id="btnBuscarEspecialidad"><i class="fa fa-search" style="margin-right:5px"></i>Buscar Doctores</button>
             </div>
           </div>
         </div>

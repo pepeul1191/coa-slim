@@ -15,6 +15,7 @@ var DoctorView = Backbone.View.extend({
 		"click #tablaDoctor > tfoot > tr > td > span > .fa-fast-forward": "paginacionIrUltimo",
     "click #tablaDoctor > tfoot > tr > td > button.guardar-tabla": "guardarTabla",
     "click #tablaDoctor > tbody > tr > td > i.quitar-fila": "quitarFila",
+    "click #btnBuscarNombres": "buscarNombres",
 	},
 	render: function() {
 		this.$el.html(this.getTemplate());
@@ -55,4 +56,16 @@ var DoctorView = Backbone.View.extend({
   guardarTabla: function(event){
 		this.tabla.guardarTabla(event);
 	},
+  buscarNombres: function(event){
+    var filtro = {};
+    filtro.nombres = $("#txtNombres").val();
+    filtro.paterno = $("#txtPaterno").val();
+    filtro.materno = $("#txtMaterno").val();
+    paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?filtro=' + JSON.stringify(filtro);
+    this.tabla = new TableView(paramsDoctorTable);
+    console.log(this.tabla);
+    $("#tablaDoctor tbody").empty();
+    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.listar();
+  },
 });

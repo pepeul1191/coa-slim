@@ -10,6 +10,7 @@ var paramsDoctorTable = {
   //urlListar: BASE_URL + "distrito/listar/" + provinciaId,
   urlGuardar: BASE_URL + "doctor/guardar_tabla",
   urlListar: BASE_URL + "doctor/sexo_sede_especialidad",
+  urlListarBuscar: BASE_URL + "doctor/sexo_sede_especialidad",
   fila: {
     id: { // llave de REST
       tipo: "td_id",

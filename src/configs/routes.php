@@ -50,6 +50,7 @@ $app->post('/doctor/guardar', DoctorController::class . ':guardar')->add($mw_amb
 $app->post('/doctor/guardar_tabla', DoctorController::class . ':guardar_tabla')->add($mw_ambiente_csrf);
 $app->get('/doctor/select/{sede_id}', DoctorController::class . ':select')->add($mw_ambiente_csrf);
 $app->get('/doctor/sede/{sede_id}', DoctorController::class . ':sede')->add($mw_ambiente_csrf);
+//$app->get('/doctor/buscar/nombre', DoctorController::class . ':buscar_nombre')->add($mw_ambiente_csrf);
 $app->get('/sexo/listar', SexoController::class . ':listar')->add($mw_ambiente_csrf);
 $app->get('/sede/tipo/{tipo_sede_id}', SedeController::class . ':tipo')->add($mw_ambiente_csrf);
 $app->get('/tipo_sede/listar', TipoSedeController::class . ':listar')->add($mw_ambiente_csrf);

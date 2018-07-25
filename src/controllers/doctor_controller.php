@@ -7,15 +7,46 @@ class DoctorController extends \Configs\Controller
   public function sexo_sede_especialidad($request, $response, $args) {
     $rpta = '';
     $status = 200;
+    $filtro = null; $especialidad = null; $sede = null;
+    if ($request->getQueryParam('filtro') != null){
+      $filtro = json_decode($request->getQueryParam('filtro'));
+    }
+    if ($request->getQueryParam('especialidad') != null){
+      $especialidad = json_decode($request->getQueryParam('especialidad'));
+    }
+    if ($request->getQueryParam('sede') != null){
+      $sede = json_decode($request->getQueryParam('sede'));
+    }
     $data = json_decode($request->getQueryParam('data'));
     $page = $data->{'page'};
     $step = $data->{'step'};
     $inicio = ($page - 1) * $step + 1;
     try {
-      $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
-        ->limit($step)
-        ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
-        ->find_array();
+      $rs = null;
+      if($filtro != null){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->limit($step)
+          ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
+          ->where_like('nombres', $filtro->{'nombres'} . '%')
+          ->where_like('paterno', $filtro->{'paterno'} . '%')
+          ->where_like('materno', $filtro->{'materno'} . '%')
+          ->find_array(); // TODO + FILTRO
+      } elseif($especialidad != null ){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->limit($step)
+          ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
+          ->find_array(); // TODO + especialidad
+      } elseif($sede != null ){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->limit($step)
+          ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
+          ->find_array(); // TODO + sede
+      } else{
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->limit($step)
+          ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
+          ->find_array();
+      }
       $rpta = json_encode($rs);
     }catch (Exception $e) {
       $status = 500;
