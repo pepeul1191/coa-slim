@@ -8,7 +8,7 @@ var dataDoctorDetalleView = {
     titulo_modal: "Editar Doctor",
   },
   closeFunction: function(){
-     location.replace(BASE_URL + "contenidos/#/doctor");
+    location.replace(BASE_URL + "contenidos/#/doctor");
   },
 };
 
@@ -43,8 +43,11 @@ var DoctorDetalleView = ModalView.extend({
     var viewInstance = this;
     $.ajax({
       type: "GET",
-      url: BASE_URL + "contenidos/doctor/obtener/" + viewInstance.get("doctor_id"),
-      data: {csrfmiddlewaretoken: CSRF},
+      url: BASE_URL + "doctor/obtener/" + viewInstance.get("doctor_id"),
+      data: {},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         viewInstance.model = JSON.parse(data);
@@ -88,8 +91,13 @@ var DoctorDetalleView = ModalView.extend({
     this.model.especialidad_id = $("#cbmEspecialidad").val();
     $.ajax({
       type: "POST",
-      url: BASE_URL + "contenidos/doctor/editar",
-      data: {csrfmiddlewaretoken: CSRF, data: JSON.stringify(viewInstance.model)},
+      url: BASE_URL + "doctor/editar",
+      data: {
+        data: JSON.stringify(viewInstance.model)
+      },
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         var responseData = JSON.parse(data);

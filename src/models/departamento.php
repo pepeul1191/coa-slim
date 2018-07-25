@@ -6,5 +6,5 @@ class Departamento extends \Model
 {
 
 	public static $_table = 'departamentos';
-	public static $_connection_name = 'ubicaciones';
+	public static $_connection_name = 'coa';
 }

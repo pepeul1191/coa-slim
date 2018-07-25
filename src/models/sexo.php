@@ -2,10 +2,9 @@
 
 namespace Models;
 
-class Distrito extends \Model
+class Sexo extends \Model
 {
-	public static $_table = 'distritos';
+
+	public static $_table = 'sexos';
 	public static $_connection_name = 'coa';
 }
-
-?>

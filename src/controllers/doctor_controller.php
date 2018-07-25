@@ -56,4 +56,29 @@ class DoctorController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function obtener($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    $doctor_id = $args['doctor_id'];
+    try {
+      $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+        ->where('id', $doctor_id)
+        ->find_one()
+        ->as_array();
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+  					'No se ha podido obtener el doctor a editar',
+  					$e->getMessage()
+  				]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }

@@ -166,4 +166,30 @@ class SedeController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function tipo($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    $tipo_sede_id = $args['tipo_sede_id'];
+    try {
+      $rs = \Model::factory('\Models\Sede', 'coa')
+        ->select('id')
+        ->select('nombre')
+        ->where('tipo_sede_id', $tipo_sede_id)
+        ->find_array();
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'No se ha podido listar las sedes de dicho tipo',
+            $e->getMessage()
+          ]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }

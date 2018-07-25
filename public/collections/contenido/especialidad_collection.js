@@ -9,8 +9,11 @@ var EspecialidadesCollection = Backbone.Collection.extend({
     this.models = []; // para evitar que el primero sea nulo
     $.ajax({
       type: "GET",
-      url: BASE_URL + "contenidos/especialidad/listar",
-      data: {csrfmiddlewaretoken: CSRF},
+      url: BASE_URL + "especialidad/listar",
+      data: {},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         responseData = JSON.parse(data);

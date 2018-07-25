@@ -9,8 +9,11 @@ var SexosCollection = Backbone.Collection.extend({
     this.models = []; // para evitar que el primero sea nulo
     $.ajax({
       type: "GET",
-      url: BASE_URL + "contenidos/sexo/listar",
-      data: {csrfmiddlewaretoken: CSRF},
+      url: BASE_URL + "sexo/listar",
+      data: {},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         tempResponseData = JSON.parse(data);
