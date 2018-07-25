@@ -8,8 +8,8 @@ var paramsEspecialidadTable = {
     success: "Se cargado guardo los cambios en las especialidades",
   },
   //urlListar: BASE_URL + "distrito/listar/" + provinciaId,
-  urlGuardar: BASE_URL + "contenidos/especialidad/guardar",
-  urlListar: BASE_URL + "contenidos/especialidad/listar",
+  urlGuardar: BASE_URL + "especialidad/guardar",
+  urlListar: BASE_URL + "especialidad/listar",
   fila: {
     id: { // llave de REST
       tipo: "td_id",

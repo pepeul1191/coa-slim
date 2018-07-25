@@ -14,8 +14,6 @@ use Controller\DoctorController;
 use Controller\SexoController;
 use Controller\TipoSedeController;
 use Controller\EspecialidadController;
-
-
 // Routes
 $app->get('/demo/[{name}]', function (Request $request, Response $response, array $args) {
   // Sample log message
@@ -52,6 +50,7 @@ $app->get('/sexo/listar', SexoController::class . ':listar')->add($mw_ambiente_c
 $app->get('/sede/tipo/{tipo_sede_id}', SedeController::class . ':tipo')->add($mw_ambiente_csrf);
 $app->get('/tipo_sede/listar', TipoSedeController::class . ':listar')->add($mw_ambiente_csrf);
 $app->get('/especialidad/listar', EspecialidadController::class . ':listar')->add($mw_ambiente_csrf);
+$app->post('/especialidad/guardar', EspecialidadController::class . ':guardar')->add($mw_ambiente_csrf);
 //servicios REST - sitio web
 $app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
 $app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
