@@ -26,6 +26,17 @@ var paramsSedeTable = {
       estilos: "width: 300px;",
       edicion: true,
     },
+    distrito_id: { // llave de REST
+      tipo: "autocomplete",
+      estilos: "width: 200px;",
+      edicion: true,
+      url: BASE_URL + "distrito/buscar",
+      collection: new DistritosCollection(),
+      model: "Distrito",
+      mensajeError: "Ha ocurrido un error al buscar los distritos",
+      keyModeloInput: "distrito",
+      keyModeloCelda: "distrito_id",
+    },
     telefono: { // llave de REST
       tipo: "text",
       estilos: "width: 80px;",
@@ -73,6 +84,7 @@ var paramsSedeTable = {
       estilos: "padding-left: 7px;",
     },
   ],
+  tableKeys: ['id', 'nombre', 'direccion', 'distrito_id', 'telefono', 'latitud', 'longitud', 'tipo_sede_id'],
   collection: new SedesCollection(),
   model: "Sede",
 };

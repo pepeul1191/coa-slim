@@ -197,7 +197,7 @@ class SedeController extends \Configs\Controller
     $rpta = '';
     $status = 200;
     try {
-      $rs = \Model::factory('\Models\Sede', 'coa')
+      $rs = \Model::factory('\Models\VWSedeDistrito', 'coa')
       	->select('id')
       	->select('nombre')
         ->select('direccion')
@@ -205,6 +205,8 @@ class SedeController extends \Configs\Controller
         ->select('latitud')
         ->select('longitud')
         ->select('tipo_sede_id')
+        ->select('distrito_id')
+        ->select('distrito')
       	->find_array();
       $rpta = json_encode($rs);
     }catch (Exception $e) {
@@ -357,6 +359,7 @@ class SedeController extends \Configs\Controller
           $sede->latitud = $nuevo->{'latitud'};
           $sede->longitud = $nuevo->{'longitud'};
           $sede->tipo_sede_id = $nuevo->{'tipo_sede_id'};
+          $sede->distrito_id = $nuevo->{'distrito_id'};
           $sede->save();
           $temp = [];
           $temp['temporal'] = $nuevo->{'id'};
@@ -374,6 +377,7 @@ class SedeController extends \Configs\Controller
           $sede->latitud = $editado->{'latitud'};
           $sede->longitud = $editado->{'longitud'};
           $sede->tipo_sede_id = $editado->{'tipo_sede_id'};
+          $sede->distrito_id = $editado->{'distrito_id'};
           $sede->save();
         }
       }
