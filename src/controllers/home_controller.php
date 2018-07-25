@@ -10,11 +10,11 @@ class HomeController extends \Configs\Controller
     $status = 200;
     $locals = [
       'constants' => $this->constants,
-      'title' => 'Login',
+      'title' => 'Gestión de Ubicaciones',
       'csss' => $this->load_css(index_css($this->constants)),
       'jss'=> $this->load_js(index_js($this->constants)),
       'mensaje' => '',
-      'menu' => '[{"url" : "contenido", "nombre" : "Contenidos"}, {"url" : "ubicacion", "nombre" : "Ubicaciones"}]',
+      'menu' => '[{"url" : "contenidos/", "nombre" : "Contenidos"}, {"url" : "ubicaciones/", "nombre" : "Ubicaciones"}]',
       'items' => '[{"subtitulo":"","items":[{"item":"Ubicaciones del Perú","url":"#/ubicacion"},{"item":"Autocompletar","url":"#/autocompletar"}]}]',
       'data' => json_encode(array(
         'mensaje' => false,

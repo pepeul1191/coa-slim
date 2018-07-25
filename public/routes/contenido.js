@@ -19,7 +19,7 @@ var contenidosRouter = Backbone.Router.extend({
     "*actions" : "index"
   },
   index: function(){
-    window.location.href = BASE_URL + "archivos/#/";
+    window.location.href = BASE_URL + "contenidos/#/doctor";
   },
   especialidad: function() {
     if(this.especialidadView == null){
