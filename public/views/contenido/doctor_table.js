@@ -79,6 +79,7 @@ var paramsDoctorTable = {
       url: BASE_URL + 'contenidos/#/doctor/editar/'/*+ doctor_id*/,
     },
   ],
+  tableKeys: ['id', 'sexo', 'nombres', 'paterno', 'materno', 'especialidad', 'cop', 'rne', 'tipo_sede', 'sede'],
   collection: new ViewDoctoresCollection(),
   model: "ViewDoctor",
 };

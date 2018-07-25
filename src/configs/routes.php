@@ -10,6 +10,7 @@ use Controller\LoginController;
 use Controller\ProvinciaController;
 use Controller\SedeController;
 use Controller\ContenidoController;
+use Controller\DoctorController;
 
 // Routes
 $app->get('/demo/[{name}]', function (Request $request, Response $response, array $args) {
@@ -29,7 +30,7 @@ $app->get('/error/access/{numero}', ErrorController::class . ':access');
 $app->get('/', HomeController::class . ':view')->add($mw_session_true);
 $app->get('/ubicaciones/', HomeController::class . ':view')->add($mw_session_true);
 $app->get('/contenidos/', ContenidoController::class . ':view')->add($mw_session_true);
-//servicios REST
+//servicios REST - ubicaciones
 $app->get('/departamento/listar', DepartamentoController::class . ':listar')->add($mw_ambiente_csrf);
 $app->post('/departamento/guardar', DepartamentoController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->get('/provincia/listar/{departamento_id}', ProvinciaController::class . ':listar')->add($mw_ambiente_csrf);
@@ -38,6 +39,9 @@ $app->get('/distrito/listar/{provincia_id}', DistritoController::class . ':lista
 $app->post('/distrito/guardar', DistritoController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->get('/distrito/buscar', DistritoController::class . ':buscar')->add($mw_ambiente_csrf);
 $app->get('/distrito/nombre/{distrito_id}', DistritoController::class . ':nombre')->add($mw_ambiente_csrf);
+// servicios REST - contenido
+$app->get('/contenidos/doctor/sexo_sede_especialidad', DoctorController::class . ':sexo_sede_especialidad')->add($mw_ambiente_csrf);
+$app->get('/contenidos/doctor/count_sexo_sede_especialidad', DoctorController::class . ':count_sexo_sede_especialidad')->add($mw_ambiente_csrf);
 //servicios REST - sitio web
 $app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
 $app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
