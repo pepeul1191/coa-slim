@@ -33,4 +33,13 @@ def listar_sedes
   end
 end
 
-listar_sedes
+def listar_doctores
+  doctores = Doctor.order(:id).all.to_a
+  puts "INSERT INTO doctores (id, nombres, paterno, materno, cop, rne, sede_id, especialidad_id, sexo_id) VALUES "
+  doctores.each do |doctor|
+     rne = rand(10000..99999)
+     puts "(%i, '%s', '%s', '%s', %i, %s, %i, %i, %i), " % [doctor.id, doctor.nombres, doctor.paterno, doctor.materno, doctor.cop, rne, doctor.sede_id, doctor.especialidad_id, doctor.sexo_id]
+  end
+end
+
+listar_doctores
