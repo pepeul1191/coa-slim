@@ -9,8 +9,11 @@ var DoctoresCollection = Backbone.Collection.extend({
     this.models = []; // para evitar que el primero sea nulo
     $.ajax({
       type: "GET",
-      url: BASE_URL + "contenidos/doctor/select/" + sede_id,
-      data: {csrfmiddlewaretoken: CSRF},
+      url: BASE_URL + "doctor/select/" + sede_id,
+      data: {},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         responseData = JSON.parse(data);

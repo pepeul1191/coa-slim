@@ -8,7 +8,7 @@ var dataSedeResponsableView = {
     titulo_modal: "Gestión de Responsables de la Sede",
   },
   closeFunction: function(){
-    location.replace(BASE_URL + "contenidos/#/sede");
+    location.replace(BASE_URL + "#/sede");
   },
 };
 
@@ -37,8 +37,11 @@ var SedeResponsableView = ModalView.extend({
     var viewInstance = this;
     $.ajax({
       type: "GET",
-      url: BASE_URL + "contenidos/sede/obtener_responsables/" + viewInstance.get("sede_id"),
-      data: {csrfmiddlewaretoken: CSRF},
+      url: BASE_URL + "sede/obtener_responsables/" + viewInstance.get("sede_id"),
+      data: {},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         viewInstance.responsables = JSON.parse(data);
@@ -62,8 +65,13 @@ var SedeResponsableView = ModalView.extend({
     });
     $.ajax({
       type: "POST",
-      url: BASE_URL + "contenidos/sede/doctor_turno/guardar",
-      data: {csrfmiddlewaretoken: CSRF, data: JSON.stringify(doctorTurno.toJSON())},
+      url: BASE_URL + "sede/doctor_turno/guardar",
+      data: {
+        data: JSON.stringify(doctorTurno.toJSON())
+      },
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         var responseData = JSON.parse(data);
@@ -93,8 +101,11 @@ var SedeResponsableView = ModalView.extend({
     });
     $.ajax({
       type: "POST",
-      url: BASE_URL + "contenidos/sede/director/guardar",
-      data: {csrfmiddlewaretoken: CSRF, data: JSON.stringify(director.toJSON())},
+      url: BASE_URL + "sede/director/guardar",
+      data: {data: JSON.stringify(director.toJSON())},
+      headers: {
+				[CSRF_KEY]: CSRF,
+			},
       async: false,
       success: function(data){
         var responseData = JSON.parse(data);
