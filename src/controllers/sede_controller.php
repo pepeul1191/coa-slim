@@ -338,4 +338,61 @@ class SedeController extends \Configs\Controller
     $rpta = json_encode($rpta);
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function guardar($request, $response, $args){
+    \ORM::get_db('coa')->beginTransaction();
+    $data = json_decode($request->getParam('data'));
+    $nuevos = $data->{'nuevos'};
+    $editados = $data->{'editados'};
+    $eliminados = $data->{'eliminados'};
+    $rpta = []; $array_nuevos = [];$status = 200;
+    try {
+      if(count($nuevos) > 0){
+        foreach ($nuevos as &$nuevo) {
+          $sede = \Model::factory('\Models\Sede', 'coa')
+            ->create();
+          $sede->nombre = $nuevo->{'nombre'};
+          $sede->direccion = $nuevo->{'direccion'};
+          $sede->telefono = $nuevo->{'telefono'};
+          $sede->latitud = $nuevo->{'latitud'};
+          $sede->longitud = $nuevo->{'longitud'};
+          $sede->tipo_sede_id = $nuevo->{'tipo_sede_id'};
+          $sede->save();
+          $temp = [];
+          $temp['temporal'] = $nuevo->{'id'};
+          $temp['nuevo_id'] = $sede->id;
+          array_push( $array_nuevos, $temp );
+        }
+      }
+      if(count($editados) > 0){
+        foreach ($editados as &$editado) {
+          $sede = \Model::factory('\Models\Sede', 'coa')
+            ->find_one($editado->{'id'});
+          $sede->nombre = $editado->{'nombre'};
+          $sede->direccion = $editado->{'direccion'};
+          $sede->telefono = $editado->{'telefono'};
+          $sede->latitud = $editado->{'latitud'};
+          $sede->longitud = $editado->{'longitud'};
+          $sede->tipo_sede_id = $editado->{'tipo_sede_id'};
+          $sede->save();
+        }
+      }
+      if(count($eliminados) > 0){
+        foreach ($eliminados as &$eliminado) {
+          $sede = \Model::factory('\Models\Sede', 'coa')->find_one($eliminado);
+          $sede->delete();
+        }
+      }
+      $rpta['tipo_mensaje'] = 'success';
+      $rpta['mensaje'] = ['Se ha registrado los cambios en las sedes', $array_nuevos];
+      \ORM::get_db('coa')->commit();
+    } catch (Exception $e) {
+      $status = 500;
+      $rpta['tipo_mensaje'] = 'error';
+      $rpta['mensaje'] = ['Se ha producido un error en guardar la tabla de sedes', $e->getMessage()];
+      \ORM::get_db('coa')->rollBack();
+    }
+    $rpta = json_encode($rpta);
+    return $response->withStatus($status)->write($rpta);
+  }
 }

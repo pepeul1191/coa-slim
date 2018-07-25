@@ -76,3 +76,6 @@ var paramsSedeTable = {
   collection: new SedesCollection(),
   model: "Sede",
 };
+
+
+console.log(tipoSedesCollection);

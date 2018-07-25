@@ -55,6 +55,7 @@ $app->get('/especialidad/listar', EspecialidadController::class . ':listar')->ad
 $app->post('/especialidad/guardar', EspecialidadController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->get('/sede/listar', SedeController::class . ':listar')->add($mw_ambiente_csrf);
 $app->get('/sede/obtener_responsables/{sede_id}', SedeController::class . ':obtener_responsable')->add($mw_ambiente_csrf);
+$app->post('/sede/guardar', SedeController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->post('/sede/doctor_turno/guardar', SedeController::class . ':doctor_turno_guardar')->add($mw_ambiente_csrf);
 $app->post('/sede/director/guardar', SedeController::class . ':director_guardar')->add($mw_ambiente_csrf);
 //servicios REST - sitio web

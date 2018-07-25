@@ -40,5 +40,7 @@ var TipoSedesCollection = Backbone.Collection.extend({
 });
 
 var tipoSedesCollection = new TipoSedesCollection({
-  targetMensaje: "mensajeRptaSede",
+  targetMensaje: "",
 });
+
+tipoSedesCollection.llenarModels();
