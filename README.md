@@ -49,6 +49,12 @@ Crear vista de directores de sede:
     INNER JOIN doctores D ON D.id= J.doctor_id  
     INNER JOIN sexos S ON D.sexo_id = S.id   
   )
+
+Migraciones con DBMATE:
+
+    $ dbmate -d "db/migrations" -e "DATABASE_URL" new <<nombre_de_migracion>>
+    $ dbmate -d "db/migrations" up
+
 ---
 
 Fuentes:

@@ -9,7 +9,7 @@ class ProvinciaController extends \Configs\Controller
     $status = 200;
     $departamento_id = $args['departamento_id'];
     try {
-      $rs = \Model::factory('\Models\Provincia', 'ubicaciones')
+      $rs = \Model::factory('\Models\Provincia', 'coa')
       	->select('id')
       	->select('nombre')
       	->where('departamento_id', $departamento_id)
@@ -38,11 +38,11 @@ class ProvinciaController extends \Configs\Controller
     $departamento_id = $data->{'extra'}->{'departamento_id'};
     $rpta = []; $array_nuevos = [];
     $status = 200;
-    \ORM::get_db('ubicaciones')->beginTransaction();
+    \ORM::get_db('coa')->beginTransaction();
     try {
       if(count($nuevos) > 0){
         foreach ($nuevos as &$nuevo) {
-          $provincia = \Model::factory('\Models\Provincia', 'ubicaciones')->create();
+          $provincia = \Model::factory('\Models\Provincia', 'coa')->create();
           $provincia->nombre = $nuevo->{'nombre'};
           $provincia->departamento_id = $departamento_id;
           $provincia->save();
@@ -54,14 +54,14 @@ class ProvinciaController extends \Configs\Controller
       }
       if(count($editados) > 0){
         foreach ($editados as &$editado) {
-          $provincia = \Model::factory('\Models\Provincia', 'ubicaciones')->find_one($editado->{'id'});
+          $provincia = \Model::factory('\Models\Provincia', 'coa')->find_one($editado->{'id'});
           $provincia->nombre = $editado->{'nombre'};
           $provincia->save();
         }
       }
       if(count($eliminados) > 0){
         foreach ($eliminados as &$eliminado) {
-          $provincia = \Model::factory('\Models\Provincia', 'ubicaciones')->find_one($eliminado);
+          $provincia = \Model::factory('\Models\Provincia', 'coa')->find_one($eliminado);
           $provincia->delete();
         }
       }
@@ -70,7 +70,7 @@ class ProvinciaController extends \Configs\Controller
         'Se ha registrado los cambios en las provincias',
         $array_nuevos
       ];
-      \ORM::get_db('ubicaciones')->commit();
+      \ORM::get_db('coa')->commit();
     }catch (Exception $e) {
       $status = 500;
       $rpta['tipo_mensaje'] = 'error';
@@ -78,7 +78,7 @@ class ProvinciaController extends \Configs\Controller
         'Se ha producido un error en guardar la tabla de provincias',
         $e->getMessage()
       ];
-      \ORM::get_db('ubicaciones')->rollBack();
+      \ORM::get_db('coa')->rollBack();
     }
     return $response->withStatus($status)->write(json_encode($rpta));
   }
