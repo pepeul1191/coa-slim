@@ -81,4 +81,45 @@ class DoctorController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function editar($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    \ORM::get_db('coa')->beginTransaction();
+    try{
+      $data = json_decode($request->getParam('data'));
+      $doctor = \Model::factory('\Models\Doctor', 'coa')->find_one($data->{'id'});
+      $doctor->nombres = $data->{'nombres'};
+      $doctor->paterno = $data->{'paterno'};
+      $doctor->materno = $data->{'materno'};
+      $doctor->cop = $data->{'cop'};
+      $doctor->rne = $data->{'rne'};
+      $doctor->sede_id = $data->{'sede_id'};
+      $doctor->especialidad_id = $data->{'especialidad_id'};
+      $doctor->sexo_id = $data->{'sexo_id'};
+      $doctor->save();
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'success',
+          'mensaje' => [
+  					'Se ha registrado los cambios en el doctor(a)',
+  					[]
+  				]
+        ]
+      );
+      \ORM::get_db('coa')->commit();
+    } catch (Exception $e) {
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+  					'Se ha producido un error en guardar el doctor(a)',
+  					$e->getMessage()
+  				]
+        ]
+      );
+      \ORM::get_db('coa')->rollBack();
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }
