@@ -42,7 +42,7 @@ class LoginController extends \Configs\Controller
       $_SESSION['usuario'] = $usuario;
       $_SESSION['estado'] = 'activo';
       $_SESSION['tiempo'] = date('Y-m-d H:i:s');
-      $response = $response->withRedirect($this->constants['base_url']);
+      $response = $response->withRedirect($this->constants['base_url'] . 'contenido');
       return $response;
     }else{
       $status = 500;
