@@ -51,6 +51,7 @@ $app->get('/sede/tipo/{tipo_sede_id}', SedeController::class . ':tipo')->add($mw
 $app->get('/tipo_sede/listar', TipoSedeController::class . ':listar')->add($mw_ambiente_csrf);
 $app->get('/especialidad/listar', EspecialidadController::class . ':listar')->add($mw_ambiente_csrf);
 $app->post('/especialidad/guardar', EspecialidadController::class . ':guardar')->add($mw_ambiente_csrf);
+$app->get('/sede/listar', SedeController::class . ':listar')->add($mw_ambiente_csrf);
 //servicios REST - sitio web
 $app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
 $app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);

@@ -192,4 +192,33 @@ class SedeController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function listar($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    try {
+      $rs = \Model::factory('\Models\Sede', 'coa')
+      	->select('id')
+      	->select('nombre')
+        ->select('direccion')
+        ->select('telefono')
+        ->select('latitud')
+        ->select('longitud')
+        ->select('tipo_sede_id')
+      	->find_array();
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'No se ha podido listar las sedes',
+            $e->getMessage()
+          ]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }
