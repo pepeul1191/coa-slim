@@ -46,6 +46,7 @@ $app->get('/doctor/sexo_sede_especialidad', DoctorController::class . ':sexo_sed
 $app->get('/doctor/count_sexo_sede_especialidad', DoctorController::class . ':count_sexo_sede_especialidad')->add($mw_ambiente_csrf);
 $app->get('/doctor/obtener/{doctor_id}', DoctorController::class . ':obtener')->add($mw_ambiente_csrf);
 $app->post('/doctor/editar', DoctorController::class . ':editar')->add($mw_ambiente_csrf);
+$app->get('/doctor/sede/{sede_id}', DoctorController::class . ':sede')->add($mw_ambiente_csrf);
 $app->get('/sexo/listar', SexoController::class . ':listar')->add($mw_ambiente_csrf);
 $app->get('/sede/tipo/{tipo_sede_id}', SedeController::class . ':tipo')->add($mw_ambiente_csrf);
 $app->get('/tipo_sede/listar', TipoSedeController::class . ':listar')->add($mw_ambiente_csrf);

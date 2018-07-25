@@ -50,6 +50,7 @@ var contenidosRouter = Backbone.Router.extend({
       this.sedeDoctorView = new SedeDoctorView(dataSedeDoctorView);
     }
     this.sedeDoctorView.set("sede_id", sede_id);
+    this.sedeDoctorView.context.BASE_URL = BASE_URL;
     this.sedeDoctorView.render();
     this.sedeDoctorView.mostrarDoctores();
   },

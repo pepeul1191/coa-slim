@@ -8,8 +8,8 @@ var paramsSedeDoctorTable = {
     success: "Se cargado guardo los cambios en las especialidades",
   },
   //urlListar: BASE_URL + "distrito/listar/" + provinciaId,
-  urlGuardar: BASE_URL + "contenidos/doctor/sede/guardar",
-  urlListar: BASE_URL + "contenidos/doctor/sede/",
+  urlGuardar: BASE_URL + "doctor/sede/guardar",
+  urlListar: BASE_URL + "doctor/sede/",
   fila: {
     id: { // llave de REST
       tipo: "td_id",
@@ -19,38 +19,38 @@ var paramsSedeDoctorTable = {
     nombres: { // llave de REST
       tipo: "text",
       estilos: "width: 150px;",
-      edicion: true,
+      edicion: false,
     },
     paterno: { // llave de REST
       tipo: "text",
       estilos: "width: 150px;",
-      edicion: true,
+      edicion: false,
     },
     materno: { // llave de REST
       tipo: "text",
       estilos: "width: 150px;",
-      edicion: true,
+      edicion: false,
     },
     cop: { // llave de REST
       tipo: "text",
       estilos: "width: 80px;",
-      edicion: true,
+      edicion: false,
     },
     rne: { // llave de REST
       tipo: "text",
       estilos: "width: 80px;",
-      edicion: true,
+      edicion: false,
     },
     especialidad_id: { // llave de REST
       tipo: "select",
       estilos: "width: 150px;",
-      edicion: true,
+      edicion: false,
       collection: especialidadesCollection,
     },
     sexo_id: { // llave de REST
       tipo: "select",
       estilos: "width: 50px;",
-      edicion: true,
+      edicion: false,
       collection: sexosCollection,
     },
     filaBotones: {
@@ -58,12 +58,12 @@ var paramsSedeDoctorTable = {
     },
   },
   filaBotones: [
-    {
+    /*{
       tipo: "i",
       claseOperacion: "quitar-fila",
       clase: "fa-times",
       estilos: "padding-left: 7px;",
-    },
+    },*/
   ],
   collection: new SedeDoctoresCollection(),
   model: "Doctor",

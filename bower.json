@@ -23,7 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "swp-backbone": "^1.0.3",
+    "swp-backbone": "^1.0.4",
     "requirejs": "^2.3.5",
     "video.js": "^7.0.3"
   }

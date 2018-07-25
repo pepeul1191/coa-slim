@@ -122,4 +122,36 @@ class DoctorController extends \Configs\Controller
     }
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function sede($request, $response, $args) {
+    $rpta = '';
+    $status = 200;
+    $sede_id = $args['sede_id'];
+    try {
+      $rs = \Model::factory('\Models\Doctor', 'coa')
+        ->select('id')
+        ->select('nombres')
+        ->select('paterno')
+        ->select('materno')
+        ->select('cop')
+        ->select('rne')
+        ->select('especialidad_id')
+        ->select('sexo_id')
+        ->where('sede_id', $sede_id)
+        ->find_array();
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'No se ha podido listar los doctores de la sede',
+            $e->getMessage()
+          ]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }
