@@ -14,6 +14,7 @@ use Controller\DoctorController;
 use Controller\SexoController;
 use Controller\TipoSedeController;
 use Controller\EspecialidadController;
+use Controller\UbicacionController;
 // Routes
 $app->get('/demo/[{name}]', function (Request $request, Response $response, array $args) {
   // Sample log message
@@ -30,7 +31,7 @@ $app->get('/login/cerrar', LoginController::class . ':cerrar');
 $app->get('/error/access/{numero}', ErrorController::class . ':access');
 //home
 $app->get('/', HomeController::class . ':view')->add($mw_session_true);
-$app->get('/ubicaciones/', HomeController::class . ':view')->add($mw_session_true);
+$app->get('/ubicaciones/', UbicacionController::class . ':view')->add($mw_session_true);
 $app->get('/contenidos/', ContenidoController::class . ':view')->add($mw_session_true);
 //servicios REST - ubicaciones
 $app->get('/departamento/listar', DepartamentoController::class . ':listar')->add($mw_ambiente_csrf);

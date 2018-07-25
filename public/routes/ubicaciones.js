@@ -9,7 +9,7 @@ var ubicacionesRouter = Backbone.Router.extend({
     "*actions" : "default",
   },
   index: function(){
-    window.location.href = BASE_URL + "#/ubicacion";
+    window.location.href = BASE_URL + "ubicaciones/#/ubicacion";
   },
   ubicacion: function() {
     if(this.ubicacicionView == null){
@@ -19,7 +19,7 @@ var ubicacionesRouter = Backbone.Router.extend({
     this.ubicacicionView.tablaDepartamento.listar();
   },
   default: function() {
-    window.location.href = BASE_URL + "#/error/404";
+    //window.location.href = BASE_URL + "#/error/404";
   },
 });
 

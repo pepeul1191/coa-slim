@@ -15,11 +15,11 @@ class HomeController extends \Configs\Controller
       'jss'=> $this->load_js(index_js($this->constants)),
       'mensaje' => '',
       'menu' => '[{"url" : "contenidos/", "nombre" : "Contenidos"}, {"url" : "ubicaciones/", "nombre" : "Ubicaciones"}]',
-      'items' => '[{"subtitulo":"","items":[{"item":"Ubicaciones del Perú","url":"#/ubicacion"},{"item":"Autocompletar","url":"#/autocompletar"}]}]',
+      'items' => '[]',
       'data' => json_encode(array(
         'mensaje' => false,
         'titulo_pagina' => 'Gestión de Ubicaciones',
-        'modulo' => 'Ubicaciones'
+        'modulo' => ''
       )),
     ];
     $view = $this->container->view;
