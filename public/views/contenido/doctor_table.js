@@ -62,7 +62,7 @@ var paramsDoctorTable = {
       edicion: true,
     },
     filaBotones: {
-      estilos: "width: 80px; padding-left: 20px;"
+      estilos: "width: 80px; padding-left: 10px;"
     },
   },
   pagination: {
@@ -77,6 +77,12 @@ var paramsDoctorTable = {
       clase: "fa-pencil",
       estilos: "padding-left: 7px;",
       url: BASE_URL + 'contenidos/#/doctor/editar/'/*+ doctor_id*/,
+    },
+    {
+      tipo: "i",
+      claseOperacion: "quitar-fila",
+      clase: "fa-times",
+      estilos: "padding-left: 7px;",
     },
   ],
   tableKeys: ['id', 'sexo', 'nombres', 'paterno', 'materno', 'especialidad', 'cop', 'rne', 'tipo_sede', 'sede'],

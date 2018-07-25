@@ -16,6 +16,7 @@ var contenidosRouter = Backbone.Router.extend({
     "sede/responsables/:sede_id": "verSedeResponsables",
     "doctor": "doctor",
     "doctor/editar/:doctor_id": "editarDoctor",
+    "doctor/crear": "crearDoctor",
     "*actions" : "index"
   },
   index: function(){
@@ -75,6 +76,22 @@ var contenidosRouter = Backbone.Router.extend({
     this.doctorDetalleView.set("doctor_id", doctor_id);
     this.doctorDetalleView.setModel();
     this.doctorDetalleView.llenarModelsSelect();
+    this.doctorDetalleView.context.titulo_modal = "Editar Doctor";
+    this.doctorDetalleView.context.doctor = this.doctorDetalleView.model;
+    this.doctorDetalleView.context.sexos = this.doctorDetalleView.sexosSelect.toJSON();
+    this.doctorDetalleView.context.tipo_sedes = this.doctorDetalleView.tipoSedesSelect.toJSON();
+    this.doctorDetalleView.context.sedes = this.doctorDetalleView.sedesSelect.toJSON();
+    this.doctorDetalleView.context.especialidades = this.doctorDetalleView.especialidadesSelect.toJSON();
+    this.doctorDetalleView.render();
+  },
+  crearDoctor: function(){
+    if(this.doctorDetalleView == null){
+      this.doctorDetalleView = new DoctorDetalleView(dataDoctorDetalleView);
+    }
+    this.doctorDetalleView.set("doctor_id", "E");
+    this.doctorDetalleView.setModel();
+    this.doctorDetalleView.llenarModelsSelect();
+    this.doctorDetalleView.context.titulo_modal = "Crear Doctor";
     this.doctorDetalleView.context.doctor = this.doctorDetalleView.model;
     this.doctorDetalleView.context.sexos = this.doctorDetalleView.sexosSelect.toJSON();
     this.doctorDetalleView.context.tipo_sedes = this.doctorDetalleView.tipoSedesSelect.toJSON();

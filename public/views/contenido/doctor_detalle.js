@@ -41,26 +41,31 @@ var DoctorDetalleView = ModalView.extend({
   },
   setModel: function(){
     var viewInstance = this;
-    $.ajax({
-      type: "GET",
-      url: BASE_URL + "doctor/obtener/" + viewInstance.get("doctor_id"),
-      data: {},
-      headers: {
-				[CSRF_KEY]: CSRF,
-			},
-      async: false,
-      success: function(data){
-        viewInstance.model = JSON.parse(data);
-      },
-      error: function(error){
-        $("#" + viewInstance.targetMensaje).removeClass("color-success");
-        $("#" + viewInstance.targetMensaje).removeClass("color-warning");
-        $("#" + viewInstance.targetMensaje).addClass("color-danger");
-        $("#" + viewInstance.targetMensaje).html("Error en listar los tipos de estaciones");
-        $("html, body").animate({ scrollTop: $("#" + viewInstance.targetMensaje).offset().top }, 1000);
-        console.log(error);
-      }
-    });
+    if(viewInstance.get("doctor_id") != "E"){
+      $.ajax({
+        type: "GET",
+        url: BASE_URL + "doctor/obtener/" + viewInstance.get("doctor_id"),
+        data: {},
+        headers: {
+  				[CSRF_KEY]: CSRF,
+  			},
+        async: false,
+        success: function(data){
+          viewInstance.model = JSON.parse(data);
+        },
+        error: function(error){
+          $("#" + viewInstance.targetMensaje).removeClass("color-success");
+          $("#" + viewInstance.targetMensaje).removeClass("color-warning");
+          $("#" + viewInstance.targetMensaje).addClass("color-danger");
+          $("#" + viewInstance.targetMensaje).html("Error en listar los tipos de estaciones");
+          $("html, body").animate({ scrollTop: $("#" + viewInstance.targetMensaje).offset().top }, 1000);
+          console.log(error);
+        }
+      });
+    }else{
+      viewInstance.model = {};
+      viewInstance.model.id = "E";
+    }
   },
   llenarModelsSelect: function(){
     this.sexosSelect.llenarModels();
@@ -89,9 +94,10 @@ var DoctorDetalleView = ModalView.extend({
     this.model.sede_id = $("#cbmSede").val();
     this.model.sexo_id = $("#cbmSexo").val();
     this.model.especialidad_id = $("#cbmEspecialidad").val();
+    console.log(viewInstance.model);
     $.ajax({
       type: "POST",
-      url: BASE_URL + "doctor/editar",
+      url: BASE_URL + "doctor/guardar",
       data: {
         data: JSON.stringify(viewInstance.model)
       },
@@ -107,6 +113,9 @@ var DoctorDetalleView = ModalView.extend({
           $("#" + viewInstance.targetMensaje).addClass("color-success");
           $("#" + viewInstance.targetMensaje).html(responseData.mensaje[0]);
           $("html, body").animate({ scrollTop: $("#" + viewInstance.targetMensaje).offset().top }, 1000);
+        }
+        if(viewInstance.model.id == "E"){
+          viewInstance.model.id = responseData.mensaje[1];
         }
       },
       error: function(error){

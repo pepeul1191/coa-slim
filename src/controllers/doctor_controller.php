@@ -82,13 +82,18 @@ class DoctorController extends \Configs\Controller
     return $response->withStatus($status)->write($rpta);
   }
 
-  public function editar($request, $response, $args) {
+  public function guardar($request, $response, $args) {
     $rpta = '';
     $status = 200;
     \ORM::get_db('coa')->beginTransaction();
     try{
       $data = json_decode($request->getParam('data'));
-      $doctor = \Model::factory('\Models\Doctor', 'coa')->find_one($data->{'id'});
+      $doctor = null;
+      if($data->{'id'} == 'E'){
+        $doctor = \Model::factory('\Models\Doctor', 'coa')->create();
+      }else{
+        $doctor = \Model::factory('\Models\Doctor', 'coa')->find_one($data->{'id'});
+      }
       $doctor->nombres = $data->{'nombres'};
       $doctor->paterno = $data->{'paterno'};
       $doctor->materno = $data->{'materno'};
@@ -103,7 +108,7 @@ class DoctorController extends \Configs\Controller
           'tipo_mensaje' => 'success',
           'mensaje' => [
   					'Se ha registrado los cambios en el doctor(a)',
-  					[]
+  					$doctor->id
   				]
         ]
       );
