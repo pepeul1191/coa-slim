@@ -42,4 +42,12 @@ def listar_doctores
   end
 end
 
-listar_doctores
+def listar_directores
+  directores = Director.order(:id).all.to_a
+  puts "INSERT INTO directores (id, sede_id, doctor_id) VALUES "
+  directores.each do |director|
+     puts "(%i, %i,  %i), " % [director.id, director.sede_id, director.doctor_id]
+  end
+end
+
+listar_directores
