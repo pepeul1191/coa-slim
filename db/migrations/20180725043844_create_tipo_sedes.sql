@@ -6,3 +6,5 @@ CREATE TABLE tipo_sedes (
 )
 
 -- migrate:down
+
+DROP TABLE IF EXISTS tipo_sedes;
