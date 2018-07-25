@@ -128,6 +128,37 @@ class DoctorController extends \Configs\Controller
     return $response->withStatus($status)->write($rpta);
   }
 
+  public function guardar_tabla($request, $response, $args){
+    $data = json_decode($request->getParam('data'));
+    $eliminados = $data->{'eliminados'};
+    $rpta = []; $array_nuevos = [];
+    $status = 200;
+    \ORM::get_db('coa')->beginTransaction();
+    try {
+      if(count($eliminados) > 0){
+        foreach ($eliminados as &$eliminado) {
+          $departamento = \Model::factory('\Models\Doctor', 'coa')->find_one($eliminado);
+          $departamento->delete();
+        }
+      }
+      $rpta['tipo_mensaje'] = 'success';
+      $rpta['mensaje'] = [
+        'Se ha registrado los cambios en los departamentos',
+        $array_nuevos
+      ];
+      \ORM::get_db('coa')->commit();
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta['tipo_mensaje'] = 'error';
+      $rpta['mensaje'] = [
+        'Se ha producido un error en guardar la tabla de doctores',
+        $e->getMessage()
+      ];
+      \ORM::get_db('coa')->rollBack();
+    }
+    return $response->withStatus($status)->write(json_encode($rpta));
+  }
+
   public function sede($request, $response, $args) {
     $rpta = '';
     $status = 200;

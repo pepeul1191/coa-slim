@@ -13,6 +13,7 @@ var DoctorView = Backbone.View.extend({
 		"click #tablaDoctor > tfoot > tr > td > span > .fa-backward": "paginacionIrAnteior",
 		"click #tablaDoctor > tfoot > tr > td > span > .fa-forward": "paginacionIrSiguiente",
 		"click #tablaDoctor > tfoot > tr > td > span > .fa-fast-forward": "paginacionIrUltimo",
+    "click #tablaDoctor > tfoot > tr > td > button.guardar-tabla": "guardarTabla",
     "click #tablaDoctor > tbody > tr > td > i.quitar-fila": "quitarFila",
 	},
 	render: function() {
@@ -50,5 +51,8 @@ var DoctorView = Backbone.View.extend({
 	},
   quitarFila: function(event){
 		this.tabla.quitarFila(event);
+	},
+  guardarTabla: function(event){
+		this.tabla.guardarTabla(event);
 	},
 });
