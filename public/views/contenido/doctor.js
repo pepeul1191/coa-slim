@@ -22,6 +22,8 @@ var DoctorView = Backbone.View.extend({
     "click #tablaDoctor > tfoot > tr > td > button.guardar-tabla": "guardarTabla",
     "click #tablaDoctor > tbody > tr > td > i.quitar-fila": "quitarFila",
     "click #btnBuscarNombres": "buscarNombres",
+    "click #btnBuscarSede": "buscarSede",
+    "click #btnBuscarEspecialidad": "buscarEspecialidad",
 	},
 	render: function() {
 		this.$el.html(this.getTemplate());
@@ -75,6 +77,22 @@ var DoctorView = Backbone.View.extend({
     filtro.paterno = $("#txtPaterno").val();
     filtro.materno = $("#txtMaterno").val();
     paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?filtro=' + JSON.stringify(filtro);
+    this.tabla = new TableView(paramsDoctorTable);
+    //console.log(this.tabla);
+    $("#tablaDoctor tbody").empty();
+    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.listar();
+  },
+  buscarSede: function(event){
+    paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?sede=' + $("#cbmSede").val();
+    this.tabla = new TableView(paramsDoctorTable);
+    //console.log(this.tabla);
+    $("#tablaDoctor tbody").empty();
+    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.listar();
+  },
+  buscarEspecialidad: function(event){
+    paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?especialidad=' + $("#cbmEspecialidad").val();
     this.tabla = new TableView(paramsDoctorTable);
     //console.log(this.tabla);
     $("#tablaDoctor tbody").empty();

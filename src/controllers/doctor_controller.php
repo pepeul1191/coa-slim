@@ -12,10 +12,10 @@ class DoctorController extends \Configs\Controller
       $filtro = json_decode($request->getQueryParam('filtro'));
     }
     if ($request->getQueryParam('especialidad') != null){
-      $especialidad = json_decode($request->getQueryParam('especialidad'));
+      $especialidad = $request->getQueryParam('especialidad');
     }
     if ($request->getQueryParam('sede') != null){
-      $sede = json_decode($request->getQueryParam('sede'));
+      $sede = $request->getQueryParam('sede');
     }
     $data = json_decode($request->getQueryParam('data'));
     $page = $data->{'page'};
@@ -33,11 +33,13 @@ class DoctorController extends \Configs\Controller
           ->find_array();
       } elseif($especialidad != null ){
         $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->where('especialidad_id', $especialidad)
           ->limit($step)
           ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
           ->find_array(); // TODO + especialidad
       } elseif($sede != null ){
         $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->where('sede_id', $sede)
           ->limit($step)
           ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
           ->find_array(); // TODO + sede
