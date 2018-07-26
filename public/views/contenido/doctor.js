@@ -56,6 +56,7 @@ var DoctorView = Backbone.View.extend({
 		this.tabla.paginacionIrAnteior();
 	},
 	paginacionIrSiguiente: function(){
+    console.log(paramsDoctorTable.urlListar);
 		this.tabla.paginacionIrSiguiente();
 	},
 	paginacionIrUltimo: function(){
@@ -79,24 +80,24 @@ var DoctorView = Backbone.View.extend({
     paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?filtro=' + JSON.stringify(filtro);
     paramsDoctorTable.pagination.urlCount = paramsDoctorTable.urlCountBase + '?filtro=' + JSON.stringify(filtro);
     this.tabla = new TableView(paramsDoctorTable);
-    $("#tablaDoctor tbody").empty();
-    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.limpiarBody();
+		this.tabla.limpiarPagination();
     this.tabla.listar();
   },
   buscarSede: function(event){
     paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?sede=' + $("#cbmSede").val();
     paramsDoctorTable.pagination.urlCount = paramsDoctorTable.urlCountBase + '?sede=' + $("#cbmSede").val();
     this.tabla = new TableView(paramsDoctorTable);
-    $("#tablaDoctor tbody").empty();
-    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.limpiarBody();
+		this.tabla.limpiarPagination();
     this.tabla.listar();
   },
   buscarEspecialidad: function(event){
     paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?especialidad=' + $("#cbmEspecialidad").val();
     paramsDoctorTable.pagination.urlCount = paramsDoctorTable.urlCountBase + '?especialidad=' + $("#cbmEspecialidad").val();
     this.tabla = new TableView(paramsDoctorTable);
-    $("#tablaDoctor tbody").empty();
-    $("#doctoresBotonesPaginacion").empty();
+    this.tabla.limpiarBody();
+		this.tabla.limpiarPagination();
     this.tabla.listar();
   },
 });
