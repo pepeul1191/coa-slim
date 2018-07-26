@@ -27,7 +27,7 @@ require __DIR__ . '/src/configs/middleware.php';
 require __DIR__ . '/src/configs/routes.php';
 
 /*CORS*/
-$app->options('/{routes:.+}', function ($request, $response, $args) {
+$app->options('/sede/{routes:.+}', function ($request, $response, $args) {
   return $response;
 });
 $app->add(function ($req, $res, $next) {
@@ -35,7 +35,7 @@ $app->add(function ($req, $res, $next) {
   return $response
     ->withHeader('Access-Control-Allow-Origin', '*')
     ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization, csrf_val')
-    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
 });
 // Run app
 $app->run();
