@@ -4,6 +4,12 @@ var DoctorView = Backbone.View.extend({
 		//this.render();
 		//console.log("initialize");
 		this.events = this.events || {};
+    this.sedesSelect = new SedesCollection({
+      targetMensaje: "defaultTargetMensajes",
+    });
+    this.especialidadesSelect = new EspecialidadesCollection({
+      targetMensaje: "defaultTargetMensajes",
+    });
 		this.tabla = new TableView(paramsDoctorTable);
 	},
 	events: {
@@ -22,7 +28,10 @@ var DoctorView = Backbone.View.extend({
 		return this;
 	},
 	getTemplate: function() {
-		var data = { };
+		var data = {
+      sedes: this.sedesSelect.toJSON(),
+      especialides: this.especialidadesSelect.toJSON()
+    };
 		var template_compiled = null;
 		$.ajax({
 		   url: STATICS_URL + 'templates/contenido/doctor.html',
@@ -56,6 +65,10 @@ var DoctorView = Backbone.View.extend({
   guardarTabla: function(event){
 		this.tabla.guardarTabla(event);
 	},
+  llenarModelsSelect: function(){
+    this.sedesSelect.llenarModelsTodasSedes();
+    this.especialidadesSelect.llenarModels();
+  },
   buscarNombres: function(event){
     var filtro = {};
     filtro.nombres = $("#txtNombres").val();
@@ -63,7 +76,7 @@ var DoctorView = Backbone.View.extend({
     filtro.materno = $("#txtMaterno").val();
     paramsDoctorTable.urlListar = paramsDoctorTable.urlListarBuscar + '?filtro=' + JSON.stringify(filtro);
     this.tabla = new TableView(paramsDoctorTable);
-    console.log(this.tabla);
+    //console.log(this.tabla);
     $("#tablaDoctor tbody").empty();
     $("#doctoresBotonesPaginacion").empty();
     this.tabla.listar();

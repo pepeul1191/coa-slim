@@ -399,4 +399,29 @@ class SedeController extends \Configs\Controller
     $rpta = json_encode($rpta);
     return $response->withStatus($status)->write($rpta);
   }
+
+  public function listar_todas($request, $response, $args){
+    $rpta = '';
+    $status = 200;
+    try {
+      $rs = \Model::factory('\Models\Sede', 'coa')
+      	->select('id')
+      	->select('nombre')
+        ->order_by_asc('nombre')
+      	->find_array();
+      $rpta = json_encode($rs);
+    }catch (Exception $e) {
+      $status = 500;
+      $rpta = json_encode(
+        [
+          'tipo_mensaje' => 'error',
+          'mensaje' => [
+            'No se ha podido listar las sedes',
+            $e->getMessage()
+          ]
+        ]
+      );
+    }
+    return $response->withStatus($status)->write($rpta);
+  }
 }

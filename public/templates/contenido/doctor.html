@@ -40,6 +40,7 @@
               <label for="cbmEspecialidad">Sedes</label>
               <select class="form-control" id="cbmSede" {{#if disabled}}disabled{{/if}}>
                 <option value="E"></option>
+                {{#fillSelect sedes ''}}{{/fillSelect}}
               </select>
             </div>
           </div>
@@ -60,6 +61,7 @@
               <label for="cbmEspecialidad">Especialidades</label>
               <select class="form-control" id="cbmEspecialidad" {{#if disabled}}disabled{{/if}}>
                 <option value="E"></option>
+                {{#fillSelect especialides ''}}{{/fillSelect}}
               </select>
             </div>
           </div>

@@ -40,6 +40,9 @@ var contenidosRouter = Backbone.Router.extend({
     if(this.doctorView == null){
       this.doctorView = new DoctorView();
     }
+    this.doctorView.llenarModelsSelect();
+    //console.log(this.doctorView.sedes);
+    //console.log(this.doctorView.especialidades);
     this.doctorView.render();
     this.doctorView.mostrarTabla();
   },

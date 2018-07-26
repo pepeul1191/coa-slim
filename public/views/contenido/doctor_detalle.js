@@ -94,7 +94,6 @@ var DoctorDetalleView = ModalView.extend({
     this.model.sede_id = $("#cbmSede").val();
     this.model.sexo_id = $("#cbmSexo").val();
     this.model.especialidad_id = $("#cbmEspecialidad").val();
-    console.log(viewInstance.model);
     $.ajax({
       type: "POST",
       url: BASE_URL + "doctor/guardar",

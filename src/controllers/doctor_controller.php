@@ -30,7 +30,7 @@ class DoctorController extends \Configs\Controller
           ->where_like('nombres', $filtro->{'nombres'} . '%')
           ->where_like('paterno', $filtro->{'paterno'} . '%')
           ->where_like('materno', $filtro->{'materno'} . '%')
-          ->find_array(); // TODO + FILTRO
+          ->find_array();
       } elseif($especialidad != null ){
         $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
           ->limit($step)

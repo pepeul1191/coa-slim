@@ -57,6 +57,7 @@ $app->get('/tipo_sede/listar', TipoSedeController::class . ':listar')->add($mw_a
 $app->get('/especialidad/listar', EspecialidadController::class . ':listar')->add($mw_ambiente_csrf);
 $app->post('/especialidad/guardar', EspecialidadController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->get('/sede/listar', SedeController::class . ':listar')->add($mw_ambiente_csrf);
+$app->get('/sede/listar_todas', SedeController::class . ':listar_todas')->add($mw_ambiente_csrf);
 $app->get('/sede/obtener_responsables/{sede_id}', SedeController::class . ':obtener_responsable')->add($mw_ambiente_csrf);
 $app->post('/sede/guardar', SedeController::class . ':guardar')->add($mw_ambiente_csrf);
 $app->post('/sede/doctor_turno/guardar', SedeController::class . ':doctor_turno_guardar')->add($mw_ambiente_csrf);
