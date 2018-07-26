@@ -69,12 +69,42 @@ class DoctorController extends \Configs\Controller
     $rpta = '';
     $status = 200;
     $data = json_decode($request->getQueryParam('data'));
+    $filtro = null; $especialidad = null; $sede = null;
+    if ($request->getQueryParam('filtro') != null){
+      $filtro = json_decode($request->getQueryParam('filtro'));
+    }
+    if ($request->getQueryParam('especialidad') != null){
+      $especialidad = $request->getQueryParam('especialidad');
+    }
+    if ($request->getQueryParam('sede') != null){
+      $sede = $request->getQueryParam('sede');
+    }
     $page = $data->{'page'};
     $step = $data->{'step'};
     $inicio = ($page - 1) * $step + 1;
     try {
-      $rpta = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
-        ->count();
+      $rs = null;
+      if($filtro != null){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->limit($step)
+          ->offset($inicio-1) //es menos 1 porque cuenta arreglo inicializado en 0
+          ->where_like('nombres', $filtro->{'nombres'} . '%')
+          ->where_like('paterno', $filtro->{'paterno'} . '%')
+          ->where_like('materno', $filtro->{'materno'} . '%')
+          ->count();
+      } elseif($especialidad != null ){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->where('especialidad_id', $especialidad)
+          ->count();
+      } elseif($sede != null ){
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->where('sede_id', $sede)
+          ->count();
+      } else{
+        $rs = \Model::factory('\Models\VWDoctorSedeSexoEspecialidad', 'coa')
+          ->count();
+      }
+      $rpta = $rs;
     }catch (Exception $e) {
       $status = 500;
       $rpta = json_encode(

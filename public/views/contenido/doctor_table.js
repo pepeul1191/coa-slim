@@ -10,7 +10,8 @@ var paramsDoctorTable = {
   //urlListar: BASE_URL + "distrito/listar/" + provinciaId,
   urlGuardar: BASE_URL + "doctor/guardar_tabla",
   urlListar: BASE_URL + "doctor/sexo_sede_especialidad",
-  urlListarBuscar: BASE_URL + "doctor/sexo_sede_especialidad",
+  urlListarBuscar: BASE_URL + "doctor/sexo_sede_especialidad", //esto se usará como artificio en los filtros
+  urlCountBase: BASE_URL + "doctor/count_sexo_sede_especialidad",//esto se usará como artificio en los filtros
   fila: {
     id: { // llave de REST
       tipo: "td_id",
@@ -68,7 +69,7 @@ var paramsDoctorTable = {
   },
   pagination: {
     urlCount: BASE_URL + "doctor/count_sexo_sede_especialidad",
-    pageSize: 13,
+    pageSize: 20,
     idBotonesPaginacion: "doctoresBotonesPaginacion"
   },
   filaBotones: [
