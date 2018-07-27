@@ -27,7 +27,7 @@ require __DIR__ . '/src/configs/middleware.php';
 require __DIR__ . '/src/configs/routes.php';
 
 /*CORS*/
-$app->options('/sede/{routes:.+}', function ($request, $response, $args) {
+$app->options('/api/{routes:.+}', function ($request, $response, $args) {
   return $response;
 });
 $app->add(function ($req, $res, $next) {

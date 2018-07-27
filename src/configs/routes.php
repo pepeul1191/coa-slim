@@ -63,8 +63,8 @@ $app->post('/sede/guardar', SedeController::class . ':guardar')->add($mw_ambient
 $app->post('/sede/doctor_turno/guardar', SedeController::class . ':doctor_turno_guardar')->add($mw_ambiente_csrf);
 $app->post('/sede/director/guardar', SedeController::class . ':director_guardar')->add($mw_ambiente_csrf);
 //servicios REST - sitio web
-$app->get('/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
-$app->get('/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
-$app->get('/sede/departamento', SedeController::class . ':departamento')->add($mw_ambiente_csrf);
-$app->get('/sede/departamento/{sede_id}', SedeController::class . ':sedes_departamento')->add($mw_ambiente_csrf);
-$app->get('/sede/director_odontologos/{sede_id}', SedeController::class . ':director_odontologos')->add($mw_ambiente_csrf);
+$app->get('/api/sede/lima', SedeController::class . ':distrito')->add($mw_ambiente_csrf);
+$app->get('/api/sede/provincia', SedeController::class . ':provincia')->add($mw_ambiente_csrf);
+$app->get('/api/sede/departamento', SedeController::class . ':departamento')->add($mw_ambiente_csrf);
+$app->get('/api/sede/departamento/{sede_id}', SedeController::class . ':sedes_departamento')->add($mw_ambiente_csrf);
+$app->get('/api/sede/director_odontologos/{sede_id}', SedeController::class . ':director_odontologos')->add($mw_ambiente_csrf);
